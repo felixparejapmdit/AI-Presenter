@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Vanguard Deck",
+  "version": "0.1.0",
+  "identifier": "com.vanguard.deck",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://127.0.0.1:17391",
+    "beforeDevCommand": "npm run dev:web",
+    "beforeBuildCommand": "npm run build:web"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Vanguard Deck",
+        "width": 1440,
+        "height": 900,
+        "minWidth": 900,
+        "minHeight": 600,
+        "center": true,
+        "decorations": true,
+        "resizable": true,
+        "visible": false,
+        "dragDropEnabled": false,
+        "backgroundColor": "#FFFFFF"
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self'",
+        "script-src": "'self'",
+        "style-src": "'self' 'unsafe-inline'",
+        "img-src": "'self' asset: http://asset.localhost data: blob:",
+        "font-src": "'self' data:",
+        "connect-src": "'self' ipc: http://ipc.localhost asset: http://asset.localhost data: blob:",
+        "media-src": "'none'",
+        "object-src": "'none'"
+      },
+      "devCsp": {
+        "default-src": "'self' http://127.0.0.1:17391",
+        "script-src": "'self' 'unsafe-inline' http://127.0.0.1:17391",
+        "style-src": "'self' 'unsafe-inline' http://127.0.0.1:17391",
+        "img-src": "'self' asset: http://asset.localhost data: blob: http://127.0.0.1:17391",
+        "font-src": "'self' data: http://127.0.0.1:17391",
+        "connect-src": "'self' ipc: http://ipc.localhost asset: http://asset.localhost data: blob: ws://127.0.0.1:17391 http://127.0.0.1:17391"
+      },
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["$DATA/vanguard-deck/**"]
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "msi", "app", "dmg"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Productivity",
+    "shortDescription": "AI-powered VIP client presentation assistant",
+    "macOS": {
+      "minimumSystemVersion": "11.0"
+    }
+  }
+}
